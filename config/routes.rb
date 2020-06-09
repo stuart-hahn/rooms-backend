@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'sessions/login'
-  get 'sessions/logout'
+  post 'sessions/login'
+  post 'sessions/logout'
   get 'sessions/get_current_user'
   namespace :api do
     namespace :v1 do
