@@ -21,6 +21,8 @@ Bundler.require(*Rails.groups)
 
 module RoomsBackend
   class Application < Rails::Application
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_cookie_name', expire_after: 7.days, httponly: true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
