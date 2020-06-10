@@ -17,7 +17,7 @@ class Api::V1::ItemsController < ApplicationController
     if @item.save
       render json: ItemSerializer.new(@item), status: :ok
     else
-      render json: { error: "Failed to create item"}, status: :unprocessable_entity
+      render json: { error: @item.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 
