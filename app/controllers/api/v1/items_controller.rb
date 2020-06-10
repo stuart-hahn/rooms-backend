@@ -10,6 +10,17 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  # CREATE /users/:id/items
+  def create
+    @item = @user.items.new(item_params)
+
+    if @item.save
+      render json: ItemSerializer.new(@item), status: :ok
+    else
+      render json: { error: "Failed to create item"}, status: :unprocessable_entity
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
