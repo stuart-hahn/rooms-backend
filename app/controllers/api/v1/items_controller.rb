@@ -29,6 +29,6 @@ class Api::V1::ItemsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def item_params
-    params.require(:item).permit(:name, :user_id)
+    params.require(:item).permit(:name, :description, :packed, :user_id)
   end
 end
