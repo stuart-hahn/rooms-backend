@@ -21,6 +21,16 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /users/:user_id/items/:id
+  def update
+    @item = @user.items.find_by(id: params[:id])
+    if @item.update(item_params)
+      render json: ItemSerializer.new(@item), status: :ok
+    else
+      render json: { error: @item.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
