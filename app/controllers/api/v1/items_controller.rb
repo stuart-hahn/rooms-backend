@@ -24,6 +24,7 @@ class Api::V1::ItemsController < ApplicationController
   # PATCH/PUT /users/:user_id/items/:id
   def update
     @item = @user.items.find_by(id: params[:id])
+    
     if @item.update(item_params)
       render json: ItemSerializer.new(@item), status: :ok
     else
@@ -39,6 +40,6 @@ class Api::V1::ItemsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def item_params
-    params.require(:item).permit(:name, :description, :packed, :user_id)
+    params.require(:item).permit(:name, :description, :packed, :user_id, :id)
   end
 end
